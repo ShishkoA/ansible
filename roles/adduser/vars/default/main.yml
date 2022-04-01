@@ -1,0 +1,4 @@
+upassword: '$6$rounds=656000$3k1pKUYLd7m6gqEZ$zNJ7ORU4il5tN4j.glx2MyZ1sOJgZ1C1bHmsIp0ho7bE7Hn7U6SqALTJWSlKKUNenHVLOydjgsgeQ5JRFNysR.'
+uusername: linux
+groups: wheel
+bashshell: /bin/bash

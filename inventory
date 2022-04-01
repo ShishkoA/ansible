@@ -1,0 +1,3 @@
+[servers]
+workst01 ansible_ssh_host=192.168.0.11
+workst02 ansible_ssh_host=192.168.0.12
