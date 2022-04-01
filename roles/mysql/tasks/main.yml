@@ -1,0 +1,61 @@
+---
+- name: Download repo
+  get_url:
+    url: https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+    dest: /opt/mysql80-community-release-el8-1.noarch.rpm
+
+- name: Install MySQL packages
+  yum:
+    update_cache: yes
+    name:
+      - mysql-devel*
+      - mysql-server*
+      - python3-mysqlclient*
+    state: latest
+
+- name: Enable the MySQL service
+  service:
+    name: mysqld
+    state: started
+    enabled: true
+
+#- name: update mysql root password for all root accounts  
+#  mysql_user:  
+#    name: root  
+#    host: "{{ item }}"  
+#    password: "{{ mysql_root_password }}"  
+#    login_user: root  
+#    login_password: "{{ mysql_root_password }}"  
+#    check_implicit_admin: yes  
+#    priv: "*.*:ALL,GRANT"  
+#  with_items:  
+#    - 127.0.0.1  
+#    - ::1  
+#    - localhost
+
+- name: Set MySQL root Password
+  mysql_user:
+    login_host: 'localhost'
+    login_user: 'root'
+    login_password: ''
+    name: 'root'
+    password: '{{ mysql_pass }}'
+    state: present
+
+- name: Create a new database with name 'testdata'
+  mysql_db:
+    name: testdata
+    state: present
+    login_host: 'localhost'
+    login_user: root
+    login_password: '{{ mysql_pass }}'
+
+- name: Create database user with name 'bob' and password '12345' with all database privileges
+  mysql_user:
+    name: bob
+    password: 12345
+    priv: 'testdata.*:ALL'
+    state: present
+    login_host: 'localhost'
+    login_user: root
+    login_password: '{{ mysql_pass }}'

@@ -1,0 +1,6 @@
+- name: permit traffic in default zone for https service
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled

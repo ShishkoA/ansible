@@ -1,0 +1,12 @@
+---
+ - name: Install first Centos 
+   hosts: all
+   gather_facts: true
+   roles:
+       - update
+       - adduser
+       - epel
+       - firewall
+       - mysql
+       - ntp
+       - nginx

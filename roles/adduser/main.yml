@@ -1,0 +1,11 @@
+- name: Add the user "{{ uusername }}" with a bash shell, appending the group 'subo' and 'adm' to the user's groups
+  user:
+    name: "{{ uusername }}"
+    shell: "{{ bashshell }}"
+    home: /home/{{ uusername }}
+    password: "{{ upassword | password_hash('sha512') }}"
+    groups: "{{ groups }}"
+    append: yes
+    
+- name: Force "{{ uusername }}" to change password
+  shell: chage -d 0 "{{ uusername }}"

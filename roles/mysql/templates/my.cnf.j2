@@ -1,0 +1,10 @@
+# Notice:This file is being managed by Ansible
+# Any manual updates will be overwritten
+# filename: roles/mysql/templates/my.cnf.j2
+[mysqld]
+user = mysql
+pid-file = /var/run/mysqld/mysqld.pid
+socket = /var/lib/mysql/mysql.sock
+port = 3306
+datadir = /var/lib/mysql
+bind-address = 0.0.0.0
